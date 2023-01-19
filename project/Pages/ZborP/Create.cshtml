@@ -1,0 +1,59 @@
+﻿@page
+@model project.Pages.ZborP.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Plecari</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Plecari.Ruta" class="control-label"></label>
+                <input asp-for="Plecari.Ruta" class="form-control" />
+                <span asp-validation-for="Plecari.Ruta" class="text-danger"></span>
+            </div>
+            <div class="form-group"> 
+                <label asp-for="Plecari.DestinatieID" class="control-label">Destinatie</label> 
+                <select asp-for="Plecari.DestinatieID" class="form-control" asp-items="ViewBag.DestinatieID"> </select>
+                <span asp-validation-for="Plecari.DestinatieID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Plecari.OraP" class="control-label"></label>
+                <input asp-for="Plecari.OraP" class="form-control" />
+                <span asp-validation-for="Plecari.OraP" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Plecari.OraE" class="control-label"></label>
+                <input asp-for="Plecari.OraE" class="form-control" />
+                <span asp-validation-for="Plecari.OraE" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Plecari.Statut" class="control-label"></label>
+                <input asp-for="Plecari.Statut" class="form-control" />
+                <span asp-validation-for="Plecari.Statut" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Plecari.CompanieID" class="control-label">Companie aeriană</label>
+                <select asp-for="Plecari.CompanieID" class="form-control" asp-items="ViewBag.CompanieID"> </select>
+                <span asp-validation-for="Plecari.CompanieID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

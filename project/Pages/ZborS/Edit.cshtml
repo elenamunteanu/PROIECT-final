@@ -1,0 +1,68 @@
+﻿@page
+@model project.Pages.ZborS.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Sosiri</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Sosiri.ID" />
+            <div class="form-group">
+                <label asp-for="Sosiri.Ruta" class="control-label"></label>
+                <input asp-for="Sosiri.Ruta" class="form-control" />
+                <span asp-validation-for="Sosiri.Ruta" class="text-danger"></span>
+            </div>
+            @* <div class="form-group">
+                <label asp-for="Sosiri.Destinatie.DenumireOras" class="control-label"></label>
+                <input asp-for="Sosiri.Destinatie.DenumireOras" class="form-control" />
+                <span asp-validation-for="Sosiri.Destinatie.DenumireOras" class="text-danger"></span>
+            </div>*@
+
+            <div class="form-group"> 
+                <label asp-for="Sosiri.DestinatieID" class="control-label">Destinatie</label> 
+                <select asp-for="Sosiri.DestinatieID" class="form-control" asp-items="ViewBag.DestinatieID"> </select>
+                <span asp-validation-for="Sosiri.DestinatieID" class="text-danger"></span>
+            </div>
+           
+            <div class="form-group">
+                <label asp-for="Sosiri.OraP" class="control-label"></label>
+                <input asp-for="Sosiri.OraP" class="form-control" />
+                <span asp-validation-for="Sosiri.OraP" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Sosiri.OraE" class="control-label"></label>
+                <input asp-for="Sosiri.OraE" class="form-control" />
+                <span asp-validation-for="Sosiri.OraE" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Sosiri.Statut" class="control-label"></label>
+                <input asp-for="Sosiri.Statut" class="form-control" />
+                <span asp-validation-for="Sosiri.Statut" class="text-danger"></span>
+            </div>
+
+            <div class="form-group"> 
+                <label asp-for="Sosiri.CompanieID" class="control-label">Companie aeriană</label> 
+                <select asp-for="Sosiri.CompanieID" class="form-control" asp-items="ViewBag.CompanieID"> </select>
+                <span asp-validation-for="Sosiri.CompanieID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

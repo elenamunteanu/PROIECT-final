@@ -1,0 +1,66 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
+using project.Data;
+using project.Models;
+
+namespace project.Pages.Angajati
+{
+    [Authorize(Roles = "Admin")]
+    public class DeleteModel : PageModel
+    {
+        private readonly project.Data.projectContext _context;
+
+        public DeleteModel(project.Data.projectContext context)
+        {
+            _context = context;
+        }
+
+        [BindProperty]
+      public Angajat Angajat { get; set; }
+
+        public async Task<IActionResult> OnGetAsync(int? id)
+        {
+            if (id == null || _context.Angajat == null)
+            {
+                return NotFound();
+            }
+
+            var angajat = await _context.Angajat.FirstOrDefaultAsync(m => m.ID == id);
+
+            if (angajat == null)
+            {
+                return NotFound();
+            }
+            else 
+            {
+                Angajat = angajat;
+            }
+            return Page();
+        }
+
+        public async Task<IActionResult> OnPostAsync(int? id)
+        {
+            if (id == null || _context.Angajat == null)
+            {
+                return NotFound();
+            }
+            var angajat = await _context.Angajat.FindAsync(id);
+
+            if (angajat != null)
+            {
+                Angajat = angajat;
+                _context.Angajat.Remove(Angajat);
+                await _context.SaveChangesAsync();
+            }
+
+            return RedirectToPage("./Index");
+        }
+    }
+}
